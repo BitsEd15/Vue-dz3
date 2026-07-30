@@ -1,47 +1,37 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+	import { ref } from 'vue';
+
+	import ZadanineFirst from './components/ZadanineFirst.vue';
+	import ZadanieSecond from './components/ZadanieSecond.vue';
+
+	const zadacha1 = ref(true)
+	const zadacha2 = ref(false)
+
+	const toggleTask1 = ()=>{
+		zadacha1.value=!zadacha1.value
+		zadacha2.value = false 
+	}
+
+	const toggleTask2 = ()=>{
+		zadacha2.value=!zadacha2.value
+		zadacha1.value = false 
+	}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+	<div>
+	<div>
+		<button @click="toggleTask1">Задача 1</button>
+		<button @click="toggleTask2">Задача 2</button>
+	</div>
+	<ZadanineFirst v-if="zadacha1"/>
+	<ZadanieSecond v-if="zadacha2"/>
+	</div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
+	button{
+		cursor: pointer;
+	}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
